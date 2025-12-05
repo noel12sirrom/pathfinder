@@ -365,7 +365,131 @@ async function update()  {
 
 
 
+  // Load locations from backend and populate dropdowns
+  async function loadLocations() {
+    try {
+      const response = await fetch('http://127.0.0.1:5000/locations', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        mode: 'cors'
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to load locations');
+      }
+
+      const data = await response.json();
+      
+      if (data.locations && data.locations.length > 0) {
+        populateLocationDropdowns(data.locations);
+        attachLocationEventListeners();
+      } else {
+        // Show error message if no locations found
+        const startContainer = document.getElementById('startLocationOptions');
+        const endContainer = document.getElementById('endLocationOptions');
+        if (startContainer) startContainer.innerHTML = '<p class="text-red-400 text-center py-4">No locations found</p>';
+        if (endContainer) endContainer.innerHTML = '<p class="text-red-400 text-center py-4">No locations found</p>';
+      }
+    } catch (error) {
+      console.error('Error loading locations:', error);
+      const startContainer = document.getElementById('startLocationOptions');
+      const endContainer = document.getElementById('endLocationOptions');
+      if (startContainer) startContainer.innerHTML = '<p class="text-red-400 text-center py-4">Error loading locations</p>';
+      if (endContainer) endContainer.innerHTML = '<p class="text-red-400 text-center py-4">Error loading locations</p>';
+    }
+  }
+
+  // Expose loadLocations globally so admin panel can trigger refresh
+  window.refreshLocations = loadLocations;
+
+  // Listen for route updates from admin panel via localStorage
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'routesUpdated') {
+      console.log('Routes updated, refreshing locations...');
+      loadLocations();
+    }
+  });
+
+  // Also listen for custom events (for same-tab updates)
+  document.addEventListener('routesUpdated', function() {
+    console.log('Routes updated, refreshing locations...');
+    loadLocations();
+  });
+
+  // Populate location dropdowns
+  function populateLocationDropdowns(locations) {
+    const startContainer = document.getElementById('startLocationOptions');
+    const endContainer = document.getElementById('endLocationOptions');
+    
+    if (!startContainer || !endContainer) {
+      console.error('Location containers not found');
+      return;
+    }
+
+    // Clear existing content
+    startContainer.innerHTML = '';
+    endContainer.innerHTML = '';
+
+    // Sort locations alphabetically
+    const sortedLocations = [...locations].sort((a, b) => a.name.localeCompare(b.name));
+
+    // Populate both dropdowns with the same locations
+    sortedLocations.forEach(location => {
+      // Only add if coordinates are available
+      if (location.coords) {
+        const option = document.createElement('div');
+        option.className = 'dropdown-option hover:text-accent-primary';
+        option.textContent = location.name;
+        option.setAttribute('data-value', location.coords);
+        
+        // Clone for end location dropdown
+        const endOption = option.cloneNode(true);
+        
+        startContainer.appendChild(option);
+        endContainer.appendChild(endOption);
+      }
+    });
+
+    // If no locations with coordinates, show message
+    if (startContainer.children.length === 0) {
+      startContainer.innerHTML = '<p class="text-gray-400 text-center py-4">No locations available</p>';
+      endContainer.innerHTML = '<p class="text-gray-400 text-center py-4">No locations available</p>';
+    }
+  }
+
+  // Attach event listeners to location options
+  function attachLocationEventListeners() {
+    const locationOptions = document.querySelectorAll('.dropdown-option');
+    locationOptions.forEach(option => {
+      // Remove existing listeners by cloning and replacing
+      const newOption = option.cloneNode(true);
+      option.parentNode.replaceChild(newOption, option);
+      
+      // Add new listener
+      newOption.addEventListener('click', function() {
+        const selectedValue = this.textContent.trim();
+        const selectedCoords = this.getAttribute('data-value');
+        const dropdownBtn = this.closest('.dropdown').querySelector('.dropdown-btn span');
+        
+        if (dropdownBtn && selectedCoords) {
+          // Update button text with selected location
+          dropdownBtn.textContent = selectedValue;
+          dropdownBtn.setAttribute('data-value', selectedCoords);
+          
+          // Hide dropdown after selection
+          this.closest('.dropdown-content').classList.remove('show');
+          this.closest('.dropdown').querySelector('.dropdown-btn').classList.remove('active');
+          update();
+        }
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
+    // Load locations first, then set up dropdowns
+    loadLocations();
     
     // Dropdown functionality
     const dropdownBtns = document.querySelectorAll('.dropdown-btn');
@@ -393,26 +517,6 @@ async function update()  {
           this.classList.add('active');
         }
       });
-    });
-    
-    // Location options selection
-    const locationOptions = document.querySelectorAll('.dropdown-option');
-    locationOptions.forEach(option => {
-      option.addEventListener('click', function() {
-        const selectedValue = this.textContent.trim();
-        const selectedCoords = this.getAttribute('data-value').trim();
-        const dropdownBtn = this.closest('.dropdown').querySelector('.dropdown-btn span');
-        
-        // Update button text with selected location
-        dropdownBtn.textContent = selectedValue;
-        dropdownBtn.setAttribute('data-value', selectedCoords);
-        
-        // Hide dropdown after selection
-        this.closest('.dropdown-content').classList.remove('show');
-        this.closest('.dropdown').querySelector('.dropdown-btn').classList.remove('active');
-        update();
-      });
-
     });
     
     // Route option selection (Shortest Distance/Time)

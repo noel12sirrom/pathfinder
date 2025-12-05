@@ -10,101 +10,95 @@
 % Brandon Bent - 2106015
 % Leon Morris - 2111686
 
-road('Kingston', 'Morant Point', 105.0, 90.0, [paved], open).
 road('Kingston', 'Port Antonio', 124.0, 92.2, [paved], open).
 road('Kingston', 'Annoto Bay', 73.0, 46.82, [paved], open).
 road('Kingston', 'Spanish Town', 28.0, 20.4, [paved], open).
 road('Kingston', 'Port Royal', 32.0, 26.3, [paved], open).
-road('Morant Point', 'Port Antonio', 83.0, 67.7, [unpaved, broken_cisterns], open).
-road('Port Antonio', 'Annoto Bay', 52.0, 45.5, [paved, broken_cisterns], open).
-road('Annoto Bay', 'Port Maria', 27.0, 25.2, [unpaved, deep_potholes], open).
+road('Morant Point', 'Port Antonio', 83.0, 67.7, [unpaved,broken_cisterns], open).
+road('Port Antonio', 'Annoto Bay', 52.0, 45.5, [paved,broken_cisterns], open).
+road('Annoto Bay', 'Port Maria', 27.0, 25.2, [unpaved,deep_potholes], open).
 road('Port Maria', 'Ocho Rios', 32.0, 31.4, [paved], open).
 road('Ocho Rios', 'Ewarton', 48.0, 46.8, [paved], open).
 road('Falmouth', 'Montego Bay', 36.0, 34.9, [paved], open).
-road('Falmouth', 'Christianna', 93.0, 70.2, [paved, deep_potholes], open).
+road('Falmouth', 'Christianna', 93.0, 70.2, [paved,deep_potholes], open).
 road('Montego Bay', 'Lucea', 37.0, 36.5, [paved], open).
-road('Montego Bay', 'Savanna La Mar', 59.0, 49.5, [paved, broken_cisterns], open).
+road('Montego Bay', 'Savanna La Mar', 59.0, 49.5, [paved,broken_cisterns], open).
 road('Montego Bay', 'Montpelier', 29.0, 18.1, [paved], open).
 road('Lucea', 'Negril', 37.0, 39.6, [paved], open).
-road('Lucea', 'Grange Hill', 40.0, 21.8, [unpaved, broken_cisterns], open).
+road('Lucea', 'Grange Hill', 40.0, 21.8, [unpaved,broken_cisterns], open).
 road('Negril', 'Savanna La Mar', 29.0, 28.1, [paved], open).
-road('Negril', 'Grange Hill', 32.0, 25.6, [paved, deep_potholes], open).
-road('Spanish Town', 'Alley', 68.0, 54.7, [paved, broken_cisterns], open).
-road('Spanish Town', 'Ewarton', 43.0, 30.5, [deep_potholes, unpaved], open).
+road('Negril', 'Grange Hill', 32.0, 25.6, [paved,deep_potholes], open).
+road('Spanish Town', 'Alley', 68.0, 54.7, [paved,broken_cisterns], open).
+road('Spanish Town', 'Ewarton', 43.0, 30.5, [deep_potholes,unpaved], open).
 road('Spanish Town', 'May Pen', 37.0, 34.6, [paved], open).
-road('Alley', 'Santa Cruz', 106.0, 93.1, [paved, deep_potholes], open).
+road('Alley', 'Santa Cruz', 106.0, 93.1, [paved,deep_potholes], open).
 road('Alley', 'May Pen', 45.0, 24.5, [paved], open).
-road('Alley', 'Junction', 109.0, 60.9, [paved, broken_cisterns], open).
+road('Alley', 'Junction', 109.0, 60.9, [paved,broken_cisterns], open).
 road('Santa Cruz', 'Black River', 28.0, 28.9, [paved], open).
-road('Santa Cruz', 'Christianna', 54.0, 51.2, [unpaved, deep_potholes], open).
-road('Santa Cruz', 'Montpelier', 88.0, 61.9, [paved, broken_cisterns], open).
+road('Santa Cruz', 'Christianna', 54.0, 51.2, [unpaved,deep_potholes], open).
+road('Santa Cruz', 'Montpelier', 88.0, 61.9, [paved,broken_cisterns], open).
 road('Santa Cruz', 'Junction', 38.0, 23.0, [paved], open).
-road('Santa Cruz', 'Mandeville', 45.0, 38.5, [paved, broken_cisterns], open).
-road('Black River', 'Savanna La Mar', 47.0, 47.3, [paved, deep_potholes], open).
-road('Black River', 'Junction', 59.0, 42.7, [paved, broken_cisterns], open).
-road('Savanna La Mar', 'Grange Hill', 21.0, 13.6, [broken_cisterns, unpaved], open).
+road('Santa Cruz', 'Mandeville', 45.0, 38.5, [paved,broken_cisterns], open).
+road('Black River', 'Savanna La Mar', 47.0, 47.3, [paved,deep_potholes], open).
+road('Black River', 'Junction', 59.0, 42.7, [paved,broken_cisterns], open).
+road('Savanna La Mar', 'Grange Hill', 21.0, 13.6, [broken_cisterns,unpaved], open).
 road('Savanna La Mar', 'Montpelier', 43.0, 35.0, [paved], open).
-road('Ewarton', 'Christianna', 117.0, 77.6, [unpaved, broken_cisterns], open).
-road('Ewarton', 'Kellits', 57.0, 32.3, [paved, deep_potholes], open).
+road('Ewarton', 'Christianna', 117.0, 77.6, [unpaved,broken_cisterns], open).
+road('Ewarton', 'Kellits', 57.0, 32.3, [paved,deep_potholes], open).
 road('Christianna', 'Mandeville', 32.0, 20.9, [paved], open).
-road('Christianna', 'Kellits', 90.0, 44.2, [deep_potholes, broken_cisterns], open).
-road('Christiana', 'Spaldings', 22.0, 19.5, [paved, deep_potholes], open).
-road('May Pen', 'Mandeville', 44.0, 39.4, [paved, broken_cisterns], open).
-road('May Pen', 'Kellits', 71.0, 42.1, [paved, deep_potholes], open).
+road('Christianna', 'Kellits', 90.0, 44.2, [deep_potholes,broken_cisterns], open).
+road('Christiana', 'Spaldings', 22.0, 19.5, [paved,deep_potholes], open).
+road('May Pen', 'Mandeville', 44.0, 39.4, [paved,broken_cisterns], open).
+road('May Pen', 'Kellits', 71.0, 42.1, [paved,deep_potholes], open).
 road('Mandeville', 'Junction', 38.0, 30.2, [paved], open).
 road('Mandeville', 'Christiana', 28.0, 24.5, [paved], open).
 road('Port Royal', 'Kingston', 32.0, 26.3, [paved], open).
-road('Ocho Rios', 'St. Ann\'s Bay', 18.0, 16.5, [paved], open).
-road('St. Ann\'s Bay', 'Falmouth', 22.0, 20.8, [paved], open).
-road('Annoto Bay', 'St. Ann\'s Bay', 45.0, 38.2, [unpaved, broken_cisterns], open).
-road('Port Maria', 'St. Ann\'s Bay', 38.0, 35.6, [paved, deep_potholes], open).
-road('St. Ann\'s Bay', 'Ewarton', 52.0, 48.3, [paved, broken_cisterns], open).
 road('Kingston', 'May Pen', 58.0, 52.1, [paved], open).
 road('Port Royal', 'Spanish Town', 45.0, 38.7, [paved], open).
-road('Morant Point', 'Port Royal', 98.0, 85.2, [unpaved, deep_potholes], open).
-road('Port Antonio', 'Port Maria', 78.0, 68.5, [paved, broken_cisterns], open).
-road('Falmouth', 'Ocho Rios', 40.0, 37.2, [paved, deep_potholes], open).
+road('Morant Point', 'Port Royal', 98.0, 85.2, [unpaved,deep_potholes], open).
+road('Port Antonio', 'Port Maria', 78.0, 68.5, [paved,broken_cisterns], open).
+road('Falmouth', 'Ocho Rios', 40.0, 37.2, [paved,deep_potholes], open).
 road('Negril', 'Montego Bay', 52.0, 48.6, [paved], open).
-road('Junction', 'Savanna La Mar', 62.0, 55.3, [paved, broken_cisterns], open).
-road('Kellits', 'Mandeville', 48.0, 41.2, [paved, deep_potholes], open).
-road('Ewarton', 'May Pen', 65.0, 58.3, [unpaved, broken_cisterns], open).
-road('Spanish Town', 'Kellits', 85.0, 72.3, [deep_potholes, unpaved], open).
-road('Kingston', 'Ewarton', 68.0, 58.5, [paved, broken_cisterns], open).
-% New routes from expanded network
+road('Junction', 'Savanna La Mar', 62.0, 55.3, [paved,broken_cisterns], open).
+road('Kellits', 'Mandeville', 48.0, 41.2, [paved,deep_potholes], open).
+road('Ewarton', 'May Pen', 65.0, 58.3, [unpaved,broken_cisterns], open).
+road('Spanish Town', 'Kellits', 85.0, 72.3, [deep_potholes,unpaved], open).
+road('Kingston', 'Ewarton', 68.0, 58.5, [paved,broken_cisterns], open).
 road('Montego Bay', 'Maroon Town', 15.0, 12.5, [paved], open).
-road('Maroon Town', 'Adelphi', 22.0, 18.3, [unpaved, broken_cisterns], open).
+road('Maroon Town', 'Adelphi', 22.0, 18.3, [unpaved,broken_cisterns], open).
 road('Falmouth', 'Duncans', 12.0, 10.5, [paved], open).
-road('Duncans', 'Discovery Bay', 18.0, 15.2, [paved, deep_potholes], open).
+road('Duncans', 'Discovery Bay', 18.0, 15.2, [paved,deep_potholes], open).
 road('Duncans', 'Clarks Town', 25.0, 22.1, [unpaved], open).
-road('Clarks Town', 'Stewart Town', 20.0, 18.5, [paved, broken_cisterns], open).
+road('Clarks Town', 'Stewart Town', 20.0, 18.5, [paved,broken_cisterns], open).
 road('Lucea', 'Green Island', 8.0, 7.2, [paved], open).
-road('Green Island', 'Negril', 15.0, 13.8, [paved, deep_potholes], open).
-road('Santa Cruz', 'Balaclava', 28.0, 24.5, [unpaved, broken_cisterns], open).
+road('Green Island', 'Negril', 15.0, 13.8, [paved,deep_potholes], open).
+road('Santa Cruz', 'Balaclava', 28.0, 24.5, [unpaved,broken_cisterns], open).
 road('Balaclava', 'Christiana', 18.0, 15.8, [paved], open).
 road('Balaclava', 'Christianna', 18.0, 15.8, [paved], open).
-road('Mandeville', 'Spaldings', 35.0, 28.5, [paved, broken_cisterns], open).
+road('Mandeville', 'Spaldings', 35.0, 28.5, [paved,broken_cisterns], open).
 road('May Pen', 'Old Harbour', 22.0, 19.5, [paved], open).
-road('May Pen', 'Chapelton', 18.0, 16.2, [paved, deep_potholes], open).
+road('May Pen', 'Chapelton', 18.0, 16.2, [paved,deep_potholes], open).
 road('Chapelton', 'Spaldings', 15.0, 13.5, [unpaved], open).
 road('Spanish Town', 'Linstead', 32.0, 28.5, [paved], open).
-road('Spanish Town', 'Old Harbour', 28.0, 24.8, [paved, broken_cisterns], open).
-road('Linstead', 'Moneague', 42.0, 38.5, [paved, deep_potholes], open).
+road('Spanish Town', 'Old Harbour', 28.0, 24.8, [paved,broken_cisterns], open).
+road('Linstead', 'Moneague', 42.0, 38.5, [paved,deep_potholes], open).
 road('Linstead', 'Bog Walk', 12.0, 10.5, [paved], open).
-road('Bog Walk', 'Port Maria', 38.0, 35.2, [unpaved, broken_cisterns], open).
+road('Bog Walk', 'Port Maria', 38.0, 35.2, [unpaved,broken_cisterns], open).
 road('Ocho Rios', 'Oracabessa', 15.0, 13.2, [paved], open).
-road('Ocho Rios', 'Moneague', 25.0, 22.5, [paved, broken_cisterns], open).
-road('St. Ann\'s Bay', 'Runaway Bay', 12.0, 10.8, [paved], open).
-road('Runaway Bay', 'Discovery Bay', 8.0, 7.5, [paved, deep_potholes], open).
+road('Ocho Rios', 'Moneague', 25.0, 22.5, [paved,broken_cisterns], open).
+road('Runaway Bay', 'Discovery Bay', 8.0, 7.5, [paved,deep_potholes], open).
 road('Port Maria', 'Oracabessa', 20.0, 18.2, [paved], open).
 road('Annoto Bay', 'Buff Bay', 18.0, 16.5, [unpaved], open).
-road('Port Antonio', 'Buff Bay', 22.0, 19.8, [paved, broken_cisterns], open).
+road('Port Antonio', 'Buff Bay', 22.0, 19.8, [paved,broken_cisterns], open).
 road('Port Antonio', 'Morant Bay', 35.0, 32.5, [paved], open).
-road('Morant Bay', 'Yallahs', 15.0, 13.5, [paved, deep_potholes], open).
+road('Morant Bay', 'Yallahs', 15.0, 13.5, [paved,deep_potholes], open).
 road('Yallahs', 'Kingston', 28.0, 25.2, [paved], open).
 road('Kingston', 'Half-Way Tree', 8.0, 7.2, [paved], open).
-road('Half-Way Tree', 'Constant Spring', 6.0, 5.5, [paved, broken_cisterns], open).
+road('Half-Way Tree', 'Constant Spring', 6.0, 5.5, [paved,broken_cisterns], open).
 road('Constant Spring', 'Stony Hill', 5.0, 4.8, [paved], open).
-road('Stony Hill', 'Golden Spring', 4.0, 3.8, [paved, deep_potholes], open).
+road('Stony Hill', 'Golden Spring', 4.0, 3.8, [paved,deep_potholes], open).
+road('Kingston', 'bob', 20.0, 20.0, [unpaved], open).
+road('bob', 'Montego Bay', 78.0, 78.0, [paved], open).
 % ----------------------
 % Location coordinates for A* heuristic (lat, lon)
 location_coords('Kingston', 18.0179, -76.8099).  % Updated: more accurate
