@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Contributors:
+       Shavon Scale - 2008093
+       Hueland Hunter - 2006702
+       Brandon Bent - 2106015
+       Leon Morris - 2111686 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PathFinder - Dark Theme</title>
+  <link rel="stylesheet" href="modal.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module" src="index.js"></script>
+  <script src="maps.js"></script>
+  <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuC62sFEQRXk4NdGxzrrz1fRjHFfetUTQ&callback=initMap" async defer></script>
+  <!--
+  -->
+</head>
+<body>
+  <div class="flex justify-between items-center w-[90%] mx-auto mb-20">
+    <h1 class="text-white text-4xl font-extrabold tracking-widest text-center uppercase flex-1">
+      PathFinder
+    </h1>
+    <a 
+      href="admin.html" 
+      class="bg-dark-surface text-gray-300 px-4 py-2 rounded-lg border border-dark-border hover:border-accent-primary transition-colors text-sm"
+    >
+      Admin Panel
+    </a>
+  </div>
+  <div class="flex justify-center w-[90%] h-[80vh] min-w-[500px] gap-10 mx-auto">
+    <!-- Modal -->
+    <div class="bg-dark-bg w-[25%] p-5 flex flex-col gap-6 border border-dark-border shadow-outer-glow justify-center rounded-xl overflow-hidden">
+      <!-- Title -->
+      <h1 class="text-white text-3xl font-bold text-center mb-1">Create Route</h1>
+      
+      <p class="text-gray-300 text-base text-center mb-4">Please select your journey preferences</p>
+      
+      <!-- Location Selection -->
+      <div class="flex justify-between mt-2 gap-4">
+        <!-- Start Location -->
+        <div class="dropdown flex-1">
+          <button class="dropdown-btn flex items-center justify-between bg-dark-input text-white px-4 py-2.5 rounded-lg border border-dark-border hover:border-accent-primary transition-all w-full text-sm">
+            <span>Start</span>
+            <svg class="w-4 h-4 ml-2 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="dropdown-content left-0 mt-2">
+            <div class="dropdown-options-container">
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.0181,-76.8101">Kingston</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="17.9132,-76.2293">Morant Point</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.1790,-76.4521">Port Antonio</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.2706,-76.7703">Annoto Bay</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.3654,-76.8922">Port Maria</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.4074,-77.1031">Ocho Rios</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.4329,-77.1973">St. Ann's Bay</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.4931,-77.6580">Falmouth</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.4713,-77.9228">Montego Bay</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.4504,-78.1763">Lucea</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.3623,-77.9235">Montpelier</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.2788,-78.3444">Negril</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.0166,-76.9748">Spanish Town</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="17.7891,-77.2692">Alley</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.0501,-77.7049">Santa Cruz</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="17.9243,-77.6177">Junction</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.0336,-77.8567">Black River</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.2269,-78.1320">Savanna La Mar</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.1767,-77.0866">Ewarton</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.1736,-77.4903">Christianna</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="17.9668,-77.2407">May Pen</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.1831,-77.2174">Kellits</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.0383,-77.5074">Mandeville</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="17.9371,-76.8410">Port Royal</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- End Location -->
+        <div class="dropdown flex-1">
+          <button class="dropdown-btn flex items-center justify-between bg-dark-input text-white px-4 py-2.5 rounded-lg border border-dark-border hover:border-accent-primary transition-all w-full text-sm">
+            <span>End</span>
+            <svg class="w-4 h-4 ml-2 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="dropdown-content right-0 mt-2">
+            <div class="dropdown-options-container">
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.0181,-76.8101">Kingston</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="17.9132,-76.2293">Morant Point</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.1790,-76.4521">Port Antonio</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.2706,-76.7703">Annoto Bay</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.3654,-76.8922">Port Maria</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.4074,-77.1031">Ocho Rios</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.4329,-77.1973">St. Ann's Bay</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.4931,-77.6580">Falmouth</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.4713,-77.9228">Montego Bay</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.4504,-78.1763">Lucea</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.3623,-77.9235">Montpelier</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.2788,-78.3444">Negril</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.0166,-76.9748">Spanish Town</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="17.7891,-77.2692">Alley</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.0501,-77.7049">Santa Cruz</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="17.9243,-77.6177">Junction</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.0336,-77.8567">Black River</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.2269,-78.1320">Savanna La Mar</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.1767,-77.0866">Ewarton</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.1736,-77.4903">Christianna</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="17.9668,-77.2407">May Pen</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.1831,-77.2174">Kellits</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="18.0383,-77.5074">Mandeville</div>
+              <div class="dropdown-option hover:text-accent-primary" data-value="17.9371,-76.8410">Port Royal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="text-white text-sm mt-6 mb-2">
+        Choose your route optimization:
+      </div>
+      
+      <!-- Route Options -->
+      <div class="flex justify-between">
+        <div class="flex flex-wrap gap-2">
+          <button class="bg-dark-surface text-gray-300 px-4 py-2 rounded-full text-xs route-option border border-dark-border hover:border-accent-primary transition-colors whitespace-nowrap">
+            Shortest Distance
+          </button>
+          <button class="bg-dark-surface text-gray-300 px-4 py-2 rounded-full text-xs route-option border border-dark-border hover:border-accent-primary transition-colors whitespace-nowrap">
+            Shortest Time
+          </button>
+          <button class="bg-dark-surface text-gray-300 px-4 py-2 rounded-full text-xs route-option border border-dark-border hover:border-accent-primary transition-colors whitespace-nowrap">
+            No Optimization
+          </button>
+        </div>
+      </div>
+      
+      <!-- Road Type Prompt -->
+      <div class="text-white text-sm mt-6 mb-2">
+        Select road preference/s to avoid:
+      </div>
+      
+      <!-- Road Options -->
+      <div class="flex flex-wrap gap-2">
+        <button class="bg-dark-surface text-gray-300 px-4 py-2 rounded-full text-xs road-option border border-dark-border hover:border-accent-primary transition-colors whitespace-normal">
+          Unpaved
+        </button>
+        <button class="bg-dark-surface text-gray-300 px-4 py-2 rounded-full text-xs road-option border border-dark-border hover:border-accent-primary transition-colors whitespace-normal">
+          Broken cisterns
+        </button>
+        <button class="bg-dark-surface text-gray-300 px-4 py-2 rounded-full text-xs road-option border border-dark-border hover:border-accent-primary transition-colors whitespace-normal">
+          Deep potholes
+        </button>
+      </div>
+      
+    </div>
+
+    
+    
+    <!-- Map -->
+    <div id="map" class="h-full w-[40%] border border-dark-border shadow-outer-glow rounded-xl"></div>
+
+    <div class="flex flex-col w-[25%] h-full">
+
+      <div id="right" class="flex flex-col w-full h-full bg-dark-bg border border-dark-border shadow-outer-glow overflow-y-auto overflow-x-hidden rounded-xl transition-all duration-500 ease-in-out">
+
+      
+        <div class="flex justify-between items-center mb-4">
+  
+          <h2 id="cost" class="w-full gradient-btn from-accent-success to-accent-primary text-white font-bold py-5 px-3.5 rounded-lg text-xl shadow-lg transform transition-transform text-center">Route</h2>
+  
+        </div>
+  
+        <div id="results" class="overflow-hidden p-2">
+          <p class="text-gray-400 text-center">Select start and end locations to view route details</p>
+        </div>
+  
+      </div>
+  
+  
+  
+      
+
+    </div>
+    
+
+    
+    
+  </div>
+</body>
+</html>

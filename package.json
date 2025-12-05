@@ -1,0 +1,20 @@
+{
+  "name": "pathfinder",
+  "version": "1.0.0",
+  "description": "PathFinder - Intelligent route planning system for Jamaica",
+  "contributors": [
+    "Shavon Scale - 2008093",
+    "Hueland Hunter - 2006702",
+    "Brandon Bent - 2106015",
+    "Leon Morris - 2111686"
+  ],
+  "dependencies": {
+    "@tailwindcss/cli": "^4.0.14",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.14"
+  }
+}

@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Contributors:
+     Shavon Scale - 2008093
+     Hueland Hunter - 2006702
+     Brandon Bent - 2106015
+     Leon Morris - 2111686 -->
+<meta charset="UTF-8">
+<title>PathFinder - System Documentation</title>
+<style>
+body {
+    font-family: 'Calibri', 'Arial', sans-serif;
+    line-height: 1.6;
+    max-width: 8.5in;
+    margin: 1in auto;
+    padding: 0.5in;
+    color: #333;
+}
+h1 {
+    color: #1a1a1f;
+    border-bottom: 3px solid #6366f1;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    page-break-after: avoid;
+}
+h2 {
+    color: #6366f1;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    page-break-after: avoid;
+}
+h3 {
+    color: #8b5cf6;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    page-break-after: avoid;
+}
+h4 {
+    color: #555;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+p {
+    margin-bottom: 12px;
+    text-align: justify;
+}
+ul, ol {
+    margin-left: 30px;
+    margin-bottom: 12px;
+}
+li {
+    margin-bottom: 8px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    page-break-inside: avoid;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background-color: #6366f1;
+    color: white;
+    font-weight: bold;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+code {
+    background-color: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+pre {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-left: 4px solid #6366f1;
+    overflow-x: auto;
+    page-break-inside: avoid;
+}
+.page-break {
+    page-break-before: always;
+}
+.section {
+    margin-bottom: 30px;
+}
+.author-info {
+    background-color: #e8e8f0;
+    padding: 15px;
+    border-left: 4px solid #6366f1;
+    margin-bottom: 20px;
+}
+</style>
+</head>
+<body>
+
+<h1>PathFinder System</h1>
+<h2>Comprehensive Documentation</h2>
+
+<div class="author-info">
+<p><strong>Project Team:</strong></p>
+<ul>
+    <li>Leon Morris: 2111686</li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<p><strong>Version:</strong> 1.0</p>
+<p><strong>Date:</strong> 2025</p>
+</div>
+
+<div class="page-break"></div>
+
+<h1>Table of Contents</h1>
+<ol>
+    <li><a href="#system-design">System Design</a>
+        <ol>
+            <li><a href="#overview">System Overview</a></li>
+            <li><a href="#architecture">System Architecture</a></li>
+            <li><a href="#components">System Components</a></li>
+            <li><a href="#data-flow">Data Flow</a></li>
+            <li><a href="#algorithms">Algorithms and Logic</a></li>
+            <li><a href="#technologies">Technologies Used</a></li>
+            <li><a href="#api">API Endpoints</a></li>
+        </ol>
+    </li>
+    <li><a href="#user-manual">User Manual</a>
+        <ol>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#requirements">System Requirements</a></li>
+            <li><a href="#installation">Installation Guide</a></li>
+            <li><a href="#getting-started">Getting Started</a></li>
+            <li><a href="#features">Features and Functionality</a></li>
+            <li><a href="#usage">Usage Instructions</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+        </ol>
+    </li>
+</ol>
+
+<div class="page-break"></div>
+
+<h1 id="system-design">1. System Design</h1>
+
+<h2 id="overview">1.1 System Overview</h2>
+
+<p>PathFinder is a web-based application designed to help users find optimal routes between various locations in Jamaica. The system provides intelligent route planning with multiple optimization criteria and road condition preferences, enabling users to make informed travel decisions.</p>
+
+<h3>Purpose</h3>
+<p>The system serves as a comprehensive route planning tool that:</p>
+<ul>
+    <li>Calculates optimal routes between 25 major locations in Jamaica</li>
+    <li>Provides route optimization based on shortest distance or shortest time</li>
+    <li>Allows users to avoid specific road conditions (unpaved roads, closed roads, broken cisterns, deep potholes)</li>
+    <li>Displays routes visually on an interactive Google Maps interface</li>
+    <li>Provides detailed route information including distance, time, and road conditions for each leg of the journey</li>
+</ul>
+
+<h3>Key Features</h3>
+<ul>
+    <li><strong>Location Selection:</strong> Choose from 25 predefined Jamaican cities and towns</li>
+    <li><strong>Route Optimization:</strong> Optimize routes by shortest distance or shortest time</li>
+    <li><strong>Road Preferences:</strong> Customize routes by avoiding specific road conditions</li>
+    <li><strong>Visual Mapping:</strong> Interactive Google Maps display with route visualization</li>
+    <li><strong>Detailed Information:</strong> Step-by-step route breakdown with distance, time, and road type for each segment</li>
+</ul>
+
+<h2 id="architecture">1.2 System Architecture</h2>
+
+<p>PathFinder follows a three-tier architecture pattern:</p>
+
+<h3>1.2.1 Presentation Layer (Frontend)</h3>
+<p>The frontend is built using modern web technologies:</p>
+<ul>
+    <li><strong>HTML5:</strong> Structure and content</li>
+    <li><strong>CSS3:</strong> Styling with Tailwind CSS framework</li>
+    <li><strong>JavaScript (ES6+):</strong> Client-side logic and interactivity</li>
+    <li><strong>Google Maps API:</strong> Map visualization and route display</li>
+</ul>
+
+<h3>1.2.2 Application Layer (Backend)</h3>
+<p>The backend serves as the middleware between frontend and data layer:</p>
+<ul>
+    <li><strong>Flask:</strong> Python web framework for RESTful API</li>
+    <li><strong>Janus (SWI-Prolog Interface):</strong> Python interface to SWI-Prolog</li>
+    <li><strong>CORS:</strong> Cross-Origin Resource Sharing enabled for frontend-backend communication</li>
+</ul>
+
+<h3>1.2.3 Data/Logic Layer</h3>
+<p>The routing logic is implemented in Prolog:</p>
+<ul>
+    <li><strong>SWI-Prolog:</strong> Logic programming language for route calculation</li>
+    <li><strong>Graph Database:</strong> Road network represented as Prolog facts</li>
+    <li><strong>Dijkstra's Algorithm:</strong> Implemented in Prolog for pathfinding</li>
+</ul>
+
+<h3>Architecture Diagram</h3>
+<pre>
+┌─────────────────────────────────────────────────────────┐
+│                    Frontend Layer                       │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐ │
+│  │  index.html  │  │  index.js    │  │   maps.js    │ │
+│  │  (UI/UX)     │  │  (Logic)     │  │  (Maps API)  │ │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘ │
+└─────────┼─────────────────┼─────────────────┼─────────┘
+          │                 │                 │
+          └─────────────────┼─────────────────┘
+                            │ HTTP/REST
+                            ▼
+┌─────────────────────────────────────────────────────────┐
+│                  Application Layer                      │
+│  ┌──────────────────────────────────────────────────┐  │
+│  │         Flask Server (server.py)                 │  │
+│  │  - REST API Endpoints                            │  │
+│  │  - Request Processing                            │  │
+│  │  - Janus Interface                               │  │
+│  └───────────────────┬──────────────────────────────┘  │
+└──────────────────────┼──────────────────────────────────┘
+                       │ Janus Query
+                       ▼
+┌─────────────────────────────────────────────────────────┐
+│                    Logic Layer                          │
+│  ┌──────────────────────────────────────────────────┐  │
+│  │         SWI-Prolog (graph.pl)                   │  │
+│  │  - Road Network Graph                           │  │
+│  │  - Route Calculation                            │  │
+│  │  - Constraint Handling                         │  │
+│  └──────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────┘
+</pre>
+
+<h2 id="components">1.3 System Components</h2>
+
+<h3>1.3.1 Frontend Components</h3>
+
+<table>
+<tr>
+    <th>Component</th>
+    <th>File</th>
+    <th>Description</th>
+</tr>
+<tr>
+    <td>Main Interface</td>
+    <td>src/index.html</td>
+    <td>Primary HTML structure containing UI elements, dropdown menus, buttons, and map container</td>
+</tr>
+<tr>
+    <td>Application Logic</td>
+    <td>src/index.js</td>
+    <td>Handles user interactions, dropdown selections, route option toggles, API communication, and result rendering</td>
+</tr>
+<tr>
+    <td>Map Integration</td>
+    <td>src/maps.js</td>
+    <td>Manages Google Maps API integration, route visualization, and map updates</td>
+</tr>
+<tr>
+    <td>Styling</td>
+    <td>src/modal.css, src/output.css</td>
+    <td>CSS files for dark theme styling and responsive design</td>
+</tr>
+</table>
+
+<h3>1.3.2 Backend Components</h3>
+
+<table>
+<tr>
+    <th>Component</th>
+    <th>File</th>
+    <th>Description</th>
+</tr>
+<tr>
+    <td>Flask Server</td>
+    <td>back/server.py</td>
+    <td>Main server application handling HTTP requests, Prolog integration via Janus, and response formatting</td>
+</tr>
+<tr>
+    <td>Route Graph</td>
+    <td>back/graph.pl</td>
+    <td>Prolog knowledge base containing road network data and routing algorithms</td>
+</tr>
+<tr>
+    <td>Python Algorithm</td>
+    <td>back/algo.py</td>
+    <td>Alternative Python implementation of Dijkstra's algorithm (reference/backup)</td>
+</tr>
+</table>
+
+<h3>1.3.3 Configuration Files</h3>
+
+<table>
+<tr>
+    <th>File</th>
+    <th>Purpose</th>
+</tr>
+<tr>
+    <td>package.json</td>
+    <td>Node.js dependencies for Tailwind CSS build process</td>
+</tr>
+<tr>
+    <td>requirements.txt</td>
+    <td>Python dependencies including Flask, janus-swi, flask-cors</td>
+</tr>
+<tr>
+    <td>webpack.config.js</td>
+    <td>Webpack configuration for asset bundling</td>
+</tr>
+<tr>
+    <td>postcss.config.js</td>
+    <td>PostCSS configuration for CSS processing</td>
+</tr>
+</table>
+
+<h2 id="data-flow">1.4 Data Flow</h2>
+
+<h3>1.4.1 Route Request Flow</h3>
+
+<ol>
+    <li><strong>User Input:</strong> User selects start location, end location, route optimization type, and road preferences in the frontend</li>
+    <li><strong>Frontend Processing:</strong> JavaScript collects user selections and formats them into a JSON request</li>
+    <li><strong>HTTP Request:</strong> Frontend sends POST request to Flask server at <code>/route</code> endpoint</li>
+    <li><strong>Backend Processing:</strong> Flask server receives request, extracts parameters, and maps UI options to Prolog atoms</li>
+    <li><strong>Prolog Query:</strong> Server constructs Prolog query and executes it via Janus interface</li>
+    <li><strong>Route Calculation:</strong> Prolog engine performs uniform-cost search (Dijkstra's algorithm) with constraints</li>
+    <li><strong>Result Processing:</strong> Prolog returns path, distance, and time; server queries additional edge information</li>
+    <li><strong>Response Formatting:</strong> Server formats results into JSON with path, cost, and leg details</li>
+    <li><strong>Frontend Display:</strong> JavaScript receives response, renders route details, and updates Google Maps display</li>
+</li>
+</ol>
+
+<h3>1.4.2 Data Structures</h3>
+
+<h4>Request Format</h4>
+<pre>{
+  "startLocation": "Kingston",
+  "endLocation": "Montego Bay",
+  "routeType": "Shortest Time",
+  "selectedRoadOptions": ["Unpaved", "Deep potholes"]
+}</pre>
+
+<h4>Response Format</h4>
+<pre>{
+  "path": ["Kingston", "Spanish Town", "May Pen", "Mandeville", "Montego Bay"],
+  "cost": "125.5 minutes",
+  "leg": [
+    {
+      "from": "Kingston",
+      "to": "Spanish Town",
+      "distance_km": 28.0,
+      "time_min": 20.4,
+      "road_type": "paved",
+      "status": "open"
+    },
+    ...
+  ]
+}</pre>
+
+<h2 id="algorithms">1.5 Algorithms and Logic</h2>
+
+<h3>1.5.1 Routing Algorithm</h3>
+
+<p>The system implements a uniform-cost search algorithm (similar to Dijkstra's algorithm) in Prolog to find optimal routes. The algorithm operates as follows:</p>
+
+<h4>Algorithm Steps:</h4>
+<ol>
+    <li><strong>Initialization:</strong> Start with a frontier containing the starting node with cost 0</li>
+    <li><strong>Expansion:</strong> Select the node with the lowest cost from the frontier</li>
+    <li><strong>Goal Check:</strong> If the selected node is the destination, return the path</li>
+    <li><strong>Neighbor Exploration:</strong> For each valid neighbor:
+        <ul>
+            <li>Check if edge is allowed (not in avoid list)</li>
+            <li>Calculate new cost based on selected metric (distance or time)</li>
+            <li>Add to frontier if not already visited</li>
+        </ul>
+    </li>
+    <li><strong>Iteration:</strong> Repeat until destination is reached or no path exists</li>
+</ol>
+
+<h4>Cost Calculation:</h4>
+<ul>
+    <li><strong>Shortest Distance:</strong> Minimizes total distance in kilometers</li>
+    <li><strong>Shortest Time:</strong> Minimizes total travel time in minutes</li>
+</ul>
+
+<h3>1.5.2 Constraint Handling</h3>
+
+<p>The system allows users to avoid specific road conditions:</p>
+<ul>
+    <li><strong>Unpaved:</strong> Excludes unpaved roads from route</li>
+    <li><strong>Closed:</strong> Excludes closed roads from route</li>
+    <li><strong>Broken cisterns:</strong> Excludes roads with broken cisterns</li>
+    <li><strong>Deep potholes:</strong> Excludes roads with deep potholes</li>
+</ul>
+
+<p>The algorithm filters edges during exploration, ensuring no selected road conditions are included in the final route.</p>
+
+<h3>1.5.3 Graph Representation</h3>
+
+<p>The road network is represented as a directed graph in Prolog with the following structure:</p>
+
+<pre>road(Source, Target, DistanceKm, TimeMin, Condition, Status)</pre>
+
+<p><strong>Parameters:</strong></p>
+<ul>
+    <li><strong>Source:</strong> Starting location (atom)</li>
+    <li><strong>Target:</strong> Destination location (atom)</li>
+    <li><strong>DistanceKm:</strong> Distance in kilometers (float)</li>
+    <li><strong>TimeMin:</strong> Travel time in minutes (float)</li>
+    <li><strong>Condition:</strong> Road condition (paved, unpaved, broken_cisterns, deep_potholes)</li>
+    <li><strong>Status:</strong> Road status (open, closed)</li>
+</ul>
+
+<p>The graph contains 25 nodes (locations) and bidirectional edges, making it an undirected graph for practical purposes.</p>
+
+<h2 id="technologies">1.6 Technologies Used</h2>
+
+<h3>Frontend Technologies</h3>
+<table>
+<tr>
+    <th>Technology</th>
+    <th>Version</th>
+    <th>Purpose</th>
+</tr>
+<tr>
+    <td>HTML5</td>
+    <td>Latest</td>
+    <td>Markup and structure</td>
+</tr>
+<tr>
+    <td>CSS3</td>
+    <td>Latest</td>
+    <td>Styling and layout</td>
+</tr>
+<tr>
+    <td>JavaScript (ES6+)</td>
+    <td>Latest</td>
+    <td>Client-side logic</td>
+</tr>
+<tr>
+    <td>Tailwind CSS</td>
+    <td>4.0.14</td>
+    <td>Utility-first CSS framework</td>
+</tr>
+<tr>
+    <td>Google Maps API</td>
+    <td>Latest</td>
+    <td>Map visualization</td>
+</tr>
+</table>
+
+<h3>Backend Technologies</h3>
+<table>
+<tr>
+    <th>Technology</th>
+    <th>Version</th>
+    <th>Purpose</th>
+</tr>
+<tr>
+    <td>Python</td>
+    <td>3.x</td>
+    <td>Backend programming language</td>
+</tr>
+<tr>
+    <td>Flask</td>
+    <td>3.1.0</td>
+    <td>Web framework</td>
+</tr>
+<tr>
+    <td>janus-swi</td>
+    <td>Latest</td>
+    <td>Python-Prolog interface</td>
+</tr>
+<tr>
+    <td>flask-cors</td>
+    <td>5.0.1</td>
+    <td>Cross-origin resource sharing</td>
+</tr>
+<tr>
+    <td>SWI-Prolog</td>
+    <td>9.0+</td>
+    <td>Logic programming engine</td>
+</tr>
+</table>
+
+<h2 id="api">1.7 API Endpoints</h2>
+
+<h3>1.7.1 Health Check Endpoint</h3>
+<p><strong>Endpoint:</strong> <code>GET /health</code></p>
+<p><strong>Description:</strong> Checks if the server is running</p>
+<p><strong>Response:</strong></p>
+<pre>{
+  "status": "ok",
+  "message": "Server is running"
+}</pre>
+
+<h3>1.7.2 Route Calculation Endpoint</h3>
+<p><strong>Endpoint:</strong> <code>POST /route</code></p>
+<p><strong>Description:</strong> Calculates optimal route between two locations</p>
+<p><strong>Request Body:</strong></p>
+<pre>{
+  "startLocation": "string",
+  "endLocation": "string",
+  "routeType": "Shortest Distance" | "Shortest Time",
+  "selectedRoadOptions": ["string"]
+}</pre>
+<p><strong>Response:</strong></p>
+<pre>{
+  "path": ["location1", "location2", ...],
+  "cost": "value unit",
+  "leg": [
+    {
+      "from": "string",
+      "to": "string",
+      "distance_km": float,
+      "time_min": float,
+      "road_type": "string",
+      "status": "string"
+    }
+  ]
+}</pre>
+<p><strong>Error Response:</strong></p>
+<pre>{
+  "error": "error message"
+}</pre>
+
+<div class="page-break"></div>
+
+<h1 id="user-manual">2. User Manual</h1>
+
+<h2 id="introduction">2.1 Introduction</h2>
+
+<p>Welcome to the PathFinder User Manual. This guide will help you understand how to use the PathFinder application to find optimal routes between locations in Jamaica.</p>
+
+<h3>What is PathFinder?</h3>
+<p>PathFinder is a web-based application that helps you plan routes between 25 major locations across Jamaica. It provides intelligent route optimization based on your preferences, whether you want the shortest distance or shortest time, and allows you to avoid specific road conditions.</p>
+
+<h3>Key Benefits</h3>
+<ul>
+    <li>Find optimal routes quickly and easily</li>
+    <li>Choose between shortest distance or shortest time</li>
+    <li>Avoid problematic road conditions</li>
+    <li>View routes on an interactive map</li>
+    <li>Get detailed information about each segment of your journey</li>
+</ul>
+
+<h2 id="requirements">2.2 System Requirements</h2>
+
+<h3>2.2.1 Server Requirements</h3>
+<ul>
+    <li><strong>Operating System:</strong> Windows, macOS, or Linux</li>
+    <li><strong>Python:</strong> Version 3.7 or higher</li>
+    <li><strong>SWI-Prolog:</strong> Version 9.0 or higher</li>
+    <li><strong>Internet Connection:</strong> Required for Google Maps API</li>
+</ul>
+
+<h3>2.2.2 Client Requirements</h3>
+<ul>
+    <li><strong>Web Browser:</strong> Modern browser (Chrome, Firefox, Edge, Safari)</li>
+    <li><strong>JavaScript:</strong> Must be enabled</li>
+    <li><strong>Internet Connection:</strong> Required for accessing the application and Google Maps</li>
+</ul>
+
+<h3>2.2.3 Software Dependencies</h3>
+<p>The following software must be installed:</p>
+<ul>
+    <li>SWI-Prolog (download from https://www.swi-prolog.org/Download.html)</li>
+    <li>Python 3.x with pip</li>
+    <li>Node.js and npm (for CSS compilation, optional)</li>
+</ul>
+
+<h2 id="installation">2.3 Installation Guide</h2>
+
+<h3>2.3.1 Step 1: Install SWI-Prolog</h3>
+<ol>
+    <li>Visit https://www.swi-prolog.org/Download.html</li>
+    <li>Download the appropriate version for your operating system</li>
+    <li>Install SWI-Prolog following the installation wizard</li>
+    <li>Note the installation path (default: <code>C:\Program Files\swipl</code> on Windows)</li>
+    <li>Verify installation by opening a terminal and running: <code>swipl --version</code></li>
+</ol>
+
+<h3>2.3.2 Step 2: Install Python Dependencies</h3>
+<ol>
+    <li>Open a terminal/command prompt</li>
+    <li>Navigate to the project directory</li>
+    <li>Create a virtual environment (recommended):
+        <pre>python -m venv .venv</pre>
+        <p>On Windows:</p>
+        <pre>.venv\Scripts\activate</pre>
+        <p>On macOS/Linux:</p>
+        <pre>source .venv/bin/activate</pre>
+    </li>
+    <li>Install required packages:
+        <pre>pip install -r requirements.txt</pre>
+    </li>
+</ol>
+
+<h3>2.3.3 Step 3: Verify Installation</h3>
+<ol>
+    <li>Check that all dependencies are installed:
+        <pre>pip list</pre>
+    </li>
+    <li>Verify Flask installation:
+        <pre>python -c "import flask; print(flask.__version__)"</pre>
+    </li>
+    <li>Verify Janus installation:
+        <pre>python -c "import janus_swi; print('Janus installed successfully')"</pre>
+    </li>
+</ol>
+
+<h2 id="getting-started">2.4 Getting Started</h2>
+
+<h3>2.4.1 Starting the Application</h3>
+
+<h4>Step 1: Start the Backend Server</h4>
+<ol>
+    <li>Open a terminal/command prompt</li>
+    <li>Navigate to the project directory</li>
+    <li>Change to the backend directory:
+        <pre>cd back</pre>
+    </li>
+    <li>Start the Flask server:
+        <pre>python server.py</pre>
+    </li>
+    <li>Wait for the message: "Server will be available at http://127.0.0.1:5000"</li>
+    <li>Keep this terminal window open while using the application</li>
+</ol>
+
+<h4>Step 2: Open the Frontend</h4>
+<p>You have two options:</p>
+
+<p><strong>Option A: Direct File Access</strong></p>
+<ol>
+    <li>Navigate to the <code>src</code> folder</li>
+    <li>Double-click <code>index.html</code> to open it in your default browser</li>
+</ol>
+
+<p><strong>Option B: Using a Local Server (Recommended)</strong></p>
+<ol>
+    <li>Open a new terminal/command prompt</li>
+    <li>Navigate to the <code>src</code> directory:
+        <pre>cd src</pre>
+    </li>
+    <li>Start a simple HTTP server:
+        <pre>python -m http.server 8000</pre>
+    </li>
+    <li>Open your browser and navigate to:
+        <pre>http://localhost:8000/index.html</pre>
+    </li>
+</ol>
+
+<h3>2.4.2 First-Time Setup</h3>
+<ol>
+    <li>Ensure the backend server is running (Step 1 above)</li>
+    <li>Open the frontend in your browser</li>
+    <li>You should see the PathFinder interface with:
+        <ul>
+            <li>Left panel: Route creation controls</li>
+            <li>Center panel: Google Maps display</li>
+            <li>Right panel: Route details (initially empty)</li>
+        </ul>
+    </li>
+</ol>
+
+<h2 id="features">2.5 Features and Functionality</h2>
+
+<h3>2.5.1 Available Locations</h3>
+<p>The system includes 25 locations across Jamaica:</p>
+<ul>
+    <li>Kingston, Morant Point, Port Antonio, Annoto Bay, Port Maria</li>
+    <li>Ocho Rios, St. Ann's Bay, Falmouth, Montego Bay, Lucea</li>
+    <li>Negril, Spanish Town, Alley, Santa Cruz, Black River</li>
+    <li>Savanna La Mar, Ewarton, Christianna, May Pen, Mandeville</li>
+    <li>Port Royal, Grange Hill, Montpelier, Junction, Kellits</li>
+</ul>
+
+<h3>2.5.2 Route Optimization Options</h3>
+<ul>
+    <li><strong>Shortest Distance:</strong> Finds the route with the minimum total distance</li>
+    <li><strong>Shortest Time:</strong> Finds the route with the minimum total travel time</li>
+</ul>
+
+<h3>2.5.3 Road Condition Options</h3>
+<p>You can avoid the following road conditions:</p>
+<ul>
+    <li><strong>Unpaved:</strong> Excludes unpaved/dirt roads</li>
+    <li><strong>Closed:</strong> Excludes closed roads</li>
+    <li><strong>Broken cisterns:</strong> Excludes roads with broken water cisterns</li>
+    <li><strong>Deep potholes:</strong> Excludes roads with deep potholes</li>
+</ul>
+
+<h2 id="usage">2.6 Usage Instructions</h2>
+
+<h3>2.6.1 Planning a Route</h3>
+
+<h4>Step 1: Select Start Location</h4>
+<ol>
+    <li>Click on the "Start" dropdown button in the left panel</li>
+    <li>A list of available locations will appear</li>
+    <li>Click on your desired starting location</li>
+    <li>The dropdown will close and display your selection</li>
+</ol>
+
+<h4>Step 2: Select End Location</h4>
+<ol>
+    <li>Click on the "End" dropdown button</li>
+    <li>Select your destination from the list</li>
+    <li>The selection will be displayed</li>
+</ol>
+
+<h4>Step 3: Choose Route Optimization</h4>
+<ol>
+    <li>Select either "Shortest Distance" or "Shortest Time"</li>
+    <li>The selected option will be highlighted with a gradient background</li>
+    <li>Only one option can be selected at a time</li>
+</ol>
+
+<h4>Step 4: Select Road Preferences (Optional)</h4>
+<ol>
+    <li>Click on any road condition buttons you want to avoid</li>
+    <li>Selected options will be highlighted</li>
+    <li>You can select multiple options</li>
+    <li>Click again to deselect an option</li>
+</ol>
+
+<h4>Step 5: View Results</h4>
+<p>Once you've made your selections, the system will automatically:</p>
+<ol>
+    <li>Calculate the optimal route</li>
+    <li>Display the route on the map</li>
+    <li>Show route details in the right panel, including:
+        <ul>
+            <li>Total cost (distance or time depending on optimization)</li>
+            <li>Step-by-step journey breakdown</li>
+            <li>Distance and time for each leg</li>
+            <li>Road type and status for each segment</li>
+        </ul>
+    </li>
+</ol>
+
+<h3>2.6.2 Understanding Route Results</h3>
+
+<h4>Route Header</h4>
+<p>The top of the results panel shows the total cost of the route:
+<ul>
+    <li>For "Shortest Distance": Shows total distance in kilometers (Km)</li>
+    <li>For "Shortest Time": Shows total time in minutes</li>
+</ul>
+
+<h4>Route Segments</h4>
+<p>Each segment of the journey displays:</p>
+<ul>
+    <li><strong>Segment Number:</strong> Sequential number indicating the order</li>
+    <li><strong>From Location:</strong> Starting point of the segment</li>
+    <li><strong>To Location:</strong> End point of the segment</li>
+    <li><strong>Distance:</strong> Distance in kilometers for that segment</li>
+    <li><strong>Time:</strong> Travel time in minutes for that segment</li>
+    <li><strong>Road Type:</strong> Condition of the road (paved, unpaved, etc.)</li>
+    <li><strong>Status:</strong> Whether the road is open or closed</li>
+</ul>
+
+<h4>Map Display</h4>
+<p>The center panel shows:</p>
+<ul>
+    <li>Interactive Google Maps view</li>
+    <li>Visual route path highlighted on the map</li>
+    <li>Start and end markers</li>
+    <li>Traffic layer overlay (if available)</li>
+</ul>
+
+<h3>2.6.3 Changing Route Options</h3>
+<p>You can modify your route at any time:</p>
+<ol>
+    <li>Change start or end location using the dropdowns</li>
+    <li>Switch between "Shortest Distance" and "Shortest Time"</li>
+    <li>Add or remove road condition preferences</li>
+    <li>The route will automatically recalculate and update</li>
+</ol>
+
+<h3>2.6.4 Tips for Best Results</h3>
+<ul>
+    <li>Select both start and end locations before choosing other options</li>
+    <li>If no route is found, try removing some road condition restrictions</li>
+    <li>Compare "Shortest Distance" vs "Shortest Time" to see different route options</li>
+    <li>Check the map view to visualize the route path</li>
+    <li>Review segment details to understand road conditions along the route</li>
+</ul>
+
+<h2 id="troubleshooting">2.7 Troubleshooting</h2>
+
+<h3>2.7.1 Common Issues and Solutions</h3>
+
+<h4>Issue: "Cannot connect to server!"</h4>
+<p><strong>Solution:</strong></p>
+<ol>
+    <li>Ensure the Flask server is running (check terminal window)</li>
+    <li>Verify the server is running on http://127.0.0.1:5000</li>
+    <li>Check that no firewall is blocking the connection</li>
+    <li>Restart the server if necessary</li>
+</ol>
+
+<h4>Issue: "No path found with given constraints"</h4>
+<p><strong>Solution:</strong></p>
+<ol>
+    <li>Try removing some road condition restrictions</li>
+    <li>Verify that both start and end locations are selected</li>
+    <li>Check if there are too many restrictions preventing a valid route</li>
+</ol>
+
+<h4>Issue: Map not displaying</h4>
+<p><strong>Solution:</strong></p>
+<ol>
+    <li>Check your internet connection</li>
+    <li>Verify Google Maps API key is valid (if using custom key)</li>
+    <li>Check browser console for JavaScript errors</li>
+    <li>Try refreshing the page</li>
+</ol>
+
+<h4>Issue: SWI-Prolog errors</h4>
+<p><strong>Solution:</strong></p>
+<ol>
+    <li>Verify SWI-Prolog is installed: <code>swipl --version</code></li>
+    <li>Check that SWI-Prolog version is 9.0 or higher</li>
+    <li>Set SWI_HOME_DIR environment variable if needed</li>
+    <li>Ensure Python and SWI-Prolog architectures match (both 64-bit or both 32-bit)</li>
+    <li>Reinstall janus-swi: <code>pip install --upgrade janus-swi</code></li>
+</ol>
+
+<h4>Issue: Janus import errors</h4>
+<p><strong>Solution:</strong></p>
+<ol>
+    <li>Install janus-swi: <code>pip install janus-swi</code></li>
+    <li>Ensure SWI-Prolog 9.0+ is installed</li>
+    <li>Set SWI_HOME_DIR environment variable</li>
+    <li>Restart terminal after setting environment variables</li>
+</ol>
+
+<h4>Issue: CORS errors</h4>
+<p><strong>Solution:</strong></p>
+<ol>
+    <li>Ensure flask-cors is installed: <code>pip install flask-cors</code></li>
+    <li>Verify CORS is enabled in server.py</li>
+    <li>Make sure you're accessing the frontend through a web server, not file://</li>
+</ol>
+
+<h3>2.7.2 Error Messages</h3>
+
+<table>
+<tr>
+    <th>Error Message</th>
+    <th>Meaning</th>
+    <th>Action</th>
+</tr>
+<tr>
+    <td>"Please select both start and end locations"</td>
+    <td>One or both locations are not selected</td>
+    <td>Select both start and end locations from dropdowns</td>
+</tr>
+<tr>
+    <td>"Calculating route..." (stuck)</td>
+    <td>Server may be unresponsive</td>
+    <td>Check server status, restart if needed</td>
+</tr>
+<tr>
+    <td>"Invalid path data"</td>
+    <td>Server returned invalid response</td>
+    <td>Check server logs, verify graph.pl file exists</td>
+</tr>
+<tr>
+    <td>"Failed to fetch route"</td>
+    <td>Network or server error</td>
+    <td>Check server is running, verify network connection</td>
+</tr>
+</table>
+
+<h3>2.7.3 Getting Help</h3>
+<p>If you encounter issues not covered in this manual:</p>
+<ol>
+    <li>Check the server terminal for error messages</li>
+    <li>Open browser developer console (F12) to check for JavaScript errors</li>
+    <li>Verify all prerequisites are installed correctly</li>
+    <li>Review the installation steps to ensure everything is set up properly</li>
+    <li>Check that all required files are present in the project directory</li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2>Appendix A: Technical Specifications</h2>
+
+<h3>Supported Locations</h3>
+<p>The system supports route planning between the following 25 locations in Jamaica:</p>
+<ul>
+    <li>Kingston (18.0181, -76.8101)</li>
+    <li>Morant Point (17.9132, -76.2293)</li>
+    <li>Port Antonio (18.1790, -76.4521)</li>
+    <li>Annoto Bay (18.2706, -76.7703)</li>
+    <li>Port Maria (18.3654, -76.8922)</li>
+    <li>Ocho Rios (18.4074, -77.1031)</li>
+    <li>St. Ann's Bay (18.4329, -77.1973)</li>
+    <li>Falmouth (18.4931, -77.6580)</li>
+    <li>Montego Bay (18.4713, -77.9228)</li>
+    <li>Lucea (18.4504, -78.1763)</li>
+    <li>Montpelier (18.3623, -77.9235)</li>
+    <li>Negril (18.2788, -78.3444)</li>
+    <li>Spanish Town (18.0166, -76.9748)</li>
+    <li>Alley (17.7891, -77.2692)</li>
+    <li>Santa Cruz (18.0501, -77.7049)</li>
+    <li>Junction (17.9243, -77.6177)</li>
+    <li>Black River (18.0336, -77.8567)</li>
+    <li>Savanna La Mar (18.2269, -78.1320)</li>
+    <li>Ewarton (18.1767, -77.0866)</li>
+    <li>Christianna (18.1736, -77.4903)</li>
+    <li>May Pen (17.9668, -77.2407)</li>
+    <li>Kellits (18.1831, -77.2174)</li>
+    <li>Mandeville (18.0383, -77.5074)</li>
+    <li>Port Royal (17.9371, -76.8410)</li>
+</ul>
+
+<h2>Appendix B: File Structure</h2>
+<pre>
+PathFinder/
+├── back/
+│   ├── algo.py          # Python algorithm implementation
+│   ├── graph.pl         # Prolog knowledge base
+│   └── server.py        # Flask server
+├── src/
+│   ├── index.html       # Main HTML file
+│   ├── index.js         # Frontend logic
+│   ├── maps.js          # Google Maps integration
+│   ├── modal.css        # Styling
+│   └── output.css       # Compiled CSS
+├── DOCUMENTATION/
+│   └── PathFinder_Documentation.html
+├── package.json         # Node.js dependencies
+├── requirements.txt     # Python dependencies
+└── README.md            # Project readme
+</pre>
+
+<h2>Appendix C: Contact Information</h2>
+<p>For technical support or questions about the PathFinder system, please contact the development team:</p>
+<ul>
+    <li>Leon Morris: 2111686</li>
+    <li>Steven Armstrong: 2208626</li>
+    <li>Okeitho Campbell: 2100110</li>
+    <li>Kenrick Brown: 2209589</li>
+</ul>
+
+<hr>
+<p style="text-align: center; margin-top: 50px; color: #666;">
+<em>End of Documentation</em><br>
+PathFinder System - Version 1.0<br>
+© 2025 PathFinder
+</p>
+
+</body>
+</html>
